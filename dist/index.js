@@ -4629,24 +4629,24 @@ function run() {
             yield execBashCommand(colconBuildCmd, commandPrefix, options);
             // ignoreReturnCode is set to true to avoid having a lack of coverage
             // data fail the build.
-            const colconLcovInitialCmd = `colcon lcov-result --initial`;
-            yield execBashCommand(colconLcovInitialCmd, commandPrefix, {
-                cwd: rosWorkspaceDir,
-                ignoreReturnCode: true
-            });
+            // const colconLcovInitialCmd = `colcon lcov-result --initial`;
+            // yield execBashCommand(colconLcovInitialCmd, commandPrefix, {
+            //     cwd: rosWorkspaceDir,
+            //     ignoreReturnCode: true
+            // });
             const colconTestCmd = `colcon test --event-handlers console_cohesion+ \
 			--pytest-with-coverage --return-code-on-test-failure \
 			--packages-select ${packageNameList.join(" ")} \
 			${extra_options.join(" ")}`;
             yield execBashCommand(colconTestCmd, commandPrefix, options);
             // ignoreReturnCode, check comment above in --initial
-            const colconLcovResultCmd = `colcon lcov-result \
-	             --filter ${coverageIgnorePattern} \
-	             --packages-select ${packageNameList.join(" ")}`;
-            yield execBashCommand(colconLcovResultCmd, commandPrefix, {
-                cwd: rosWorkspaceDir,
-                ignoreReturnCode: true
-            });
+            // const colconLcovResultCmd = `colcon lcov-result \
+	          //    --filter ${coverageIgnorePattern} \
+	          //    --packages-select ${packageNameList.join(" ")}`;
+            // yield execBashCommand(colconLcovResultCmd, commandPrefix, {
+            //     cwd: rosWorkspaceDir,
+            //     ignoreReturnCode: true
+            // });
             core.setOutput('ros-workspace-directory-name', rosWorkspaceName);
         }
         catch (error) {
